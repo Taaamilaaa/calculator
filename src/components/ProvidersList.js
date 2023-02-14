@@ -1,10 +1,22 @@
+import '../App.css'
+
 export const ProvidersList = ({ data, modeSwitch }) => {
+   
     return (
-        <ul>
-            {data.map((el, index) => {
+        <>
+           <h2>More info:</h2>
+
+        <ul className='providers-list'>
+                {data.map((el, index) => {
+                    const { price } = el;
+                    const fixedPrice = price.toFixed(2);
+                    const pricePerYear = price * 12;
+                    const fixedPricePerYear = pricePerYear.toFixed(2)
+
+                    
                 return (
                     <li key={index}>
-                        <p>{el.name}</p>
+                        <p>{el.name}: {fixedPrice}$ per month/ {fixedPricePerYear} per year</p>
                         {el.name === 'bunny' && (
                             <form onChange={modeSwitch}>
                                 <input id="HDD" type="radio" name="bunny" value="HDD" defaultChecked></input>
@@ -26,5 +38,7 @@ export const ProvidersList = ({ data, modeSwitch }) => {
                 );
             })}
         </ul>
+        </>
+        
     );
 };
