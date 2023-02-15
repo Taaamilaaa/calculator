@@ -99,6 +99,7 @@ function App() {
             <div className="chart-container">
                 <Charts data={rendData} className="centered" />
             </div>
+            
             <InputsList list={rangeList} onRangeChange={onRangeChange} />
             
             <ProvidersList data={rendData} modeSwitch={modeSwitch} colorSercher={colorSercher} />
