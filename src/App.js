@@ -1,5 +1,6 @@
 import './App.css';
 
+import { data } from './data';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { onRangeStorage, onRangeTransfer } from './redux/slice';
@@ -10,50 +11,7 @@ import { ProvidersList } from './components/ProvidersList';
 
 function App() {
     const rangeList = ['Storage', 'Transfer'];
-    const data = [
-        {
-            name: 'backblaze',
-            switch: false,
-            minPayment: 7,
-            storagePrice: 0.005,
-            transferPrice: 0.01,
-            logo: './img/backblaze.webp',
-            price: 0,
-            color: 'rgba(255, 25, 71)',
-        },
-        {
-            name: 'bunny',
-            switch: true,
-            maxPayment: 10,
-            storagePriceHDD: 0.01,
-            storagePriceSSD: 0.02,
-            transferPrice: 0.01,
-            logo: './img/bunny.svg',
-            price: 0,
-            color: 'rgba(255, 165, 0)',
-        },
-        {
-            name: 'scaleway',
-            switch: true,
-            maxPayment: 10,
-            storagePriceMulti: 0.06, //75GB 0
-            storagePriceSingle: 0.03, //75GB 0
-            transferPrice: 0.02, //75GB 0
-            logo: './img/scaleway.svg',
-            price: 0,
-            color: 'rgba(238, 130, 238)',
-        },
-        {
-            name: 'vultr',
-            switch: false,
-            minPayment: 5,
-            storagePrice: 0.01,
-            transferPrice: 0.01,
-            logo: './img/vultr.svg',
-            price: 0,
-            color: 'rgba(0, 136, 255)',
-        },
-    ];
+
     const [bunnyHDD, setBunnyHDD] = useState(true);
     const [scalewayMulti, setScalewayMulti] = useState(true);
 
@@ -62,7 +20,6 @@ function App() {
 
     const dispatch = useDispatch();
 
-    //записываем в стейт данные бегунка
     const onRangeChange = e => {
         if (e.target.name === 'Storage') {
             dispatch(onRangeStorage(e.target.value));
@@ -82,12 +39,15 @@ function App() {
         let prices = [];
         let elPrice = 0;
         let color = '';
+        let logo = '';
+
         data.forEach(el => {
             if (el.name === 'backblaze') {
                 const price = sVal * el.storagePrice + tVal * el.transferPrice;
 
                 elPrice = price < 7 && price !== 0 ? 7 : price;
                 color = el.color;
+                logo = el.logo;
             } else if (el.name === 'bunny') {
                 const priceHDD = sVal * el.storagePriceHDD + tVal * el.transferPrice; //HDD
                 const priceSSD = sVal * el.storagePriceSSD + tVal * el.transferPrice; //SSD
@@ -97,6 +57,7 @@ function App() {
 
                 elPrice = bunnyHDD ? maxPaymentHDD : maxPaymentSSD;
                 color = el.color;
+                logo = el.logo;
             } else if (el.name === 'scaleway') {
                 const sPrice = sVal < 75 ? 0 : sVal - 75;
                 const tPrice = tVal < 75 ? 0 : tVal - 75;
@@ -106,12 +67,14 @@ function App() {
 
                 elPrice = scalewayMulti ? priceMulti : priceSingle;
                 color = el.color;
+                logo = el.logo;
             } else if (el.name === 'vultr') {
                 const price = sVal * el.storagePrice + tVal * el.transferPrice;
                 elPrice = price < 5 && price !== 0 ? 5 : price;
                 color = el.color;
+                logo = el.logo;
             }
-            const newEl = { name: el.name, price: elPrice, color: color };
+            const newEl = { name: el.name, price: elPrice, color: color, logo: logo };
             prices.push(newEl);
         });
 
@@ -120,18 +83,25 @@ function App() {
 
     useEffect(() => {
         pricesCalc();
+       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sVal, tVal]);
+
+    const colorSercher = el => {
+        el.styles.color = el.color;
+    };
 
     const rendData = pricesCalc();
 
     return (
         <div className="container">
             <h1>Compare prices of providers</h1>
-            <InputsList list={rangeList} onRangeChange={onRangeChange} />
+
             <div className="chart-container">
                 <Charts data={rendData} className="centered" />
             </div>
-            <ProvidersList data={rendData} modeSwitch={modeSwitch} />
+            <InputsList list={rangeList} onRangeChange={onRangeChange} />
+            
+            <ProvidersList data={rendData} modeSwitch={modeSwitch} colorSercher={colorSercher} />
         </div>
     );
 }
