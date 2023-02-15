@@ -158,17 +158,5 @@ form label:not(:last-child) {
     .range-list li:not(:last-child) {
         margin-bottom: 20px;
     }
-    h1 {
-        padding-bottom: 500px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 350px;
-    }
-    .chart-container {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 150px;
-    }
+
 }
