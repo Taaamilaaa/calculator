@@ -5,7 +5,7 @@ import useWindowDimensions from '../hoock/useWindowDimensions';
 export const Charts = ({ data }) => {
     const size = useWindowDimensions();
     const { width } = size;
-    const mobile = width <= 760;
+    const mobile = width <= 500;
 
     const barColorChange = () => {
         let arr = [];

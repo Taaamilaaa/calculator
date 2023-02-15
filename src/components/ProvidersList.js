@@ -1,4 +1,5 @@
 import '../App.css';
+import { Logo } from './Logo';
 
 export const ProvidersList = ({ data, modeSwitch}) => {
 
@@ -14,8 +15,8 @@ export const ProvidersList = ({ data, modeSwitch}) => {
                     const fixedPricePerYear = pricePerYear.toFixed(2);
 
                     return (
-                        <li className='list-item' key={index} style={{ borderColor: `${el.color}` }}>
-                            
+                        <li className='list-item' key={index} style={{ borderColor: `${el.color}`, backgroundColor: "#ccc" }}>
+                            <Logo logo={el.logo} name={el.name} />
                             <div className='item-text'>
                                 <h3 style={{
                                         color: `${el.color}`,
@@ -24,7 +25,7 @@ export const ProvidersList = ({ data, modeSwitch}) => {
                                         marginRight: '25px',
                                     }}
                                 >
-                                    {el.name}:
+                                    {`${el.name}.com`}:
                                 </h3>
                                 <span className='price-month-cont'>{fixedPrice}$ per month</span>
                                 or

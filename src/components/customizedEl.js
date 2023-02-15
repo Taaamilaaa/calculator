@@ -36,7 +36,7 @@ class CustomizedAxisTickMobile extends PureComponent {
     }
 }
 const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
-   console.log(height);
+   
     if (value > 0) {
             const fixedVal = value.toFixed(2)
             return (
