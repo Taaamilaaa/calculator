@@ -46,6 +46,7 @@ function App() {
         let elPrice = 0;
         let color = '';
         let logo = '';
+        let rgbaColor = '';
 
         data.forEach(el => {
             if (el.name === 'backblaze') {
@@ -54,6 +55,7 @@ function App() {
                 elPrice = price < 7 && price !== 0 ? 7 : price;
                 color = el.color;
                 logo = el.logo;
+                rgbaColor = el.rgbaColor;
             } else if (el.name === 'bunny') {
                 const priceHDD = sVal * el.storagePriceHDD + tVal * el.transferPrice; //HDD
                 const priceSSD = sVal * el.storagePriceSSD + tVal * el.transferPrice; //SSD
@@ -64,6 +66,7 @@ function App() {
                 elPrice = bunnyHDD ? maxPaymentHDD : maxPaymentSSD;
                 color = el.color;
                 logo = el.logo;
+                rgbaColor = el.rgbaColor;
             } else if (el.name === 'scaleway') {
                 const sPrice = sVal < 75 ? 0 : sVal - 75;
                 const tPrice = tVal < 75 ? 0 : tVal - 75;
@@ -74,13 +77,21 @@ function App() {
                 elPrice = scalewayMulti ? priceMulti : priceSingle;
                 color = el.color;
                 logo = el.logo;
+                rgbaColor = el.rgbaColor;
             } else if (el.name === 'vultr') {
                 const price = sVal * el.storagePrice + tVal * el.transferPrice;
                 elPrice = price < 5 && price !== 0 ? 5 : price;
                 color = el.color;
                 logo = el.logo;
+                rgbaColor = el.rgbaColor;
             }
-            const newEl = { name: el.name, price: elPrice, color: color, logo: logo };
+            const newEl = {
+                name: el.name,
+                price: elPrice,
+                color: color,
+                logo: logo,
+                rgbaColor: rgbaColor,
+            };
             prices.push(newEl);
         });
 

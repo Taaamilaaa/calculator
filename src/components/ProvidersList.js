@@ -20,7 +20,7 @@ export const ProvidersList = ({ data, modeSwitch, minPrice }) => {
                                     ? {
                                           borderColor: `${el.color}`,
                                           backgroundColor: 'rgba(150, 192, 183, 0.671)',
-                                          boxShadow: `0px 0px 18px 11px ${el.color}`,
+                                          boxShadow: `0px 0px 18px 11px ${el.rgbaColor}`,
                                           transform: 'scale(1.07)',
                                           transition: 'transform 1s easy',
                                       }
