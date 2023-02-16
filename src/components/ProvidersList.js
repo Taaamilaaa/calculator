@@ -1,10 +1,9 @@
 import '../App.css';
 import { Logo } from './Logo';
 
-export const ProvidersList = ({ data, modeSwitch}) => {
-
+export const ProvidersList = ({ data, modeSwitch, minPrice }) => {
     return (
-        <div className='providers-list__continer'>
+        <div className="providers-list__continer">
             <h2>More info:</h2>
 
             <ul className="providers-list">
@@ -15,22 +14,48 @@ export const ProvidersList = ({ data, modeSwitch}) => {
                     const fixedPricePerYear = pricePerYear.toFixed(2);
 
                     return (
-                        <li className='list-item' key={index} style={{ borderColor: `${el.color}`, backgroundColor: "#ccc" }}>
+                        <li
+                            key={index}
+                            style={
+                                minPrice === el.price && minPrice !== 0
+                                    ? {
+                                          borderColor: `${el.color}`,
+                                          backgroundColor: 'rgba(150, 192, 183, 0.671)',
+                                          boxShadow: `0px 0px 18px 11px ${el.color}`,
+                                          transform: 'scale(1.07)',
+                                          transition: 'transform 1s easy',
+                                      }
+                                    : {
+                                          borderColor: `${el.color}`,
+                                          backgroundColor: 'rgba(150, 192, 183, 0.671)',
+                                      }
+                            }
+                        >
                             <Logo logo={el.logo} name={el.name} />
-                            <div className='item-text'>
-                                <h3 style={{
+                            <div className="item-text">
+                                <h3
+                                    style={{
                                         color: `${el.color}`,
                                         fontSize: '2rem',
-                                        display: 'inline',
-                                        marginRight: '25px',
+                                        textAlign: 'center',
+                                        marginBottom: '20px',
+                                        // display: 'block',
+
+                                        // mrginLeft: 'auto'
                                     }}
                                 >
                                     {`${el.name}.com`}:
                                 </h3>
-                                <span className='price-month-cont'>{fixedPrice}$ per month</span>
-                                or
-                                <span className='price-year-cont'>{fixedPricePerYear}$ per year</span>
-                                 
+
+                                <div className="price-text">
+                                    <span className="price-month-cont">
+                                        {fixedPrice}$ per month
+                                    </span>
+                                    or
+                                    <span className="price-year-cont">
+                                        {fixedPricePerYear}$ per year
+                                    </span>
+                                </div>
                             </div>
                             {el.name === 'bunny' && (
                                 <form onChange={modeSwitch}>

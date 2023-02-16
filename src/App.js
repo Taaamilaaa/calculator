@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { onRangeStorage, onRangeTransfer } from './redux/slice';
 
+import useWindowDimensions from './hoock/useWindowDimensions';
+
 import { InputsList } from './components/InputsList';
 import { Charts } from './components/Charts';
 import { ProvidersList } from './components/ProvidersList';
@@ -19,6 +21,10 @@ function App() {
     const tVal = useSelector(state => state.range.tVal);
 
     const dispatch = useDispatch();
+
+    const size = useWindowDimensions();
+    const { width } = size;
+    const mobile = width <= 500;
 
     const onRangeChange = e => {
         if (e.target.name === 'Storage') {
@@ -83,7 +89,7 @@ function App() {
 
     useEffect(() => {
         pricesCalc();
-       // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sVal, tVal]);
 
     const colorSercher = el => {
@@ -92,16 +98,32 @@ function App() {
 
     const rendData = pricesCalc();
 
+    const barColorChange = () => {
+        let arr = [];
+        rendData.forEach(element => {
+            arr.push(element.price);
+        });
+        return Math.min(...arr);
+    };
+
+    const minPrice = barColorChange();
+
     return (
         <div className="container">
             <h1>Compare prices of providers</h1>
 
             <div className="chart-container">
-                <Charts data={rendData} className="centered" />
+                <Charts data={rendData} className="centered" mobile={mobile} minPrice={minPrice} />
             </div>
             <InputsList list={rangeList} onRangeChange={onRangeChange} />
-            
-            <ProvidersList data={rendData} modeSwitch={modeSwitch} colorSercher={colorSercher} />
+
+            <ProvidersList
+                data={rendData}
+                modeSwitch={modeSwitch}
+                colorSercher={colorSercher}
+                mobile={mobile}
+                minPrice={minPrice}
+            />
         </div>
     );
 }

@@ -10,17 +10,20 @@ export const InputsList = ({ list, onRangeChange }) => {
             {list.map((el, index) => {
                 return (
                     <li key={index}>
-                        <label htmlFor={el}>{el}</label>
-                        <input
-                            onChange={onRangeChange}
-                            id={index}
-                            name={el}
-                            type="range"
-                            min="0"
-                            max="1000"
-                            step="1"
-                        ></input>
-                        <div className='gb-wrapper'>
+                        <div>
+                            <label htmlFor={el}>{el}</label>
+                            <input
+                                onChange={onRangeChange}
+                                id={index}
+                                name={el}
+                                type="range"
+                                min="0"
+                                max="1000"
+                                step="1"
+                            ></input>
+                        </div>
+
+                        <div className="gb-wrapper">
                             <p>
                                 {el === 'Storage' && <span>{sVal} GB</span>}
                                 {el === 'Transfer' && <span>{tVal} GB</span>}

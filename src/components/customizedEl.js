@@ -66,4 +66,9 @@ const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
             );
         }
 };
-export {CustomizedAxisTick,CustomizedAxisTickMobile,renderCustomBarLabelMobile, renderCustomBarLabel}
+
+
+
+
+
+export {CustomizedAxisTick,CustomizedAxisTickMobile,renderCustomBarLabelMobile, renderCustomBarLabel,}
