@@ -55,9 +55,8 @@ html {
     box-sizing: border-box;
     font-size: 18px;
     scroll-behavior: smooth;
-    
 }
-body{
+body {
     background-color: #d4dfc7;
 }
 .container {
@@ -91,7 +90,7 @@ h2 {
     margin-left: auto;
     margin-right: auto;
 }
-.range-list label{
+.range-list label {
     font-size: 1.8rem;
 }
 .range-list label,
@@ -130,15 +129,13 @@ h2 {
     margin-bottom: 20px;
     border: 3px solid black;
     padding: 40px 25px;
-    height:auto;
+    height: auto;
 }
-
 
 .price-month-cont {
     margin-right: 15px;
     font-size: 1.6rem;
     text-align: center;
-
 }
 .price-year-cont {
     margin-left: 15px;
@@ -158,31 +155,31 @@ form {
 form label:not(:last-child) {
     margin-right: 30px;
 }
-.logo{
+.logo {
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 25px;
     transition: transform 1s ease;
 }
-.logo:hover{
+.logo:hover {
     transform: scale(1.2);
 }
 
-.price-text{
+.price-text {
     display: flex;
 }
 .price-month-cont,
-.price-year-cont{
-   background-color: rgba(240, 248, 255, 0.507);
+.price-year-cont {
+    background-color: rgba(240, 248, 255, 0.507);
 }
 @media only screen and (max-width: 762px) {
     html {
         font-size: 14px;
     }
-        .container {
-            width: 90%;
-        }
+    .container {
+        width: 90%;
+    }
     .range-list {
         flex-direction: column;
         align-items: start;
@@ -190,25 +187,25 @@ form label:not(:last-child) {
     .range-list li:not(:last-child) {
         margin-bottom: 20px;
     }
-   
-.providers-list {
-display: block;
+
+    .providers-list {
+        display: block;
+    }
+    .providers-list li:last-child {
+        margin-bottom: 0;
+    }
 }
-.providers-list li:last-child {
-    margin-bottom: 0;
-}
-}
-@media only screen and (max-width: 350px){
-    .range-list li{
+@media only screen and (max-width: 350px) {
+    .range-list li {
         display: flex;
         flex-direction: column-reverse;
-      margin-left: auto;margin-right: auto;
-        
+        margin-left: auto;
+        margin-right: auto;
     }
-    .range-list input{
+    .range-list input {
         margin-right: 0;
     }
-    .gb-wrapper{
+    .gb-wrapper {
         margin-bottom: 12px;
     }
 }

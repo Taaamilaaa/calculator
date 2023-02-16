@@ -5,7 +5,6 @@ export const ProvidersList = ({ data, modeSwitch, minPrice }) => {
     return (
         <div className="providers-list__continer">
             <h2>More info:</h2>
-
             <ul className="providers-list">
                 {data.map((el, index) => {
                     const { price } = el;
@@ -39,9 +38,6 @@ export const ProvidersList = ({ data, modeSwitch, minPrice }) => {
                                         fontSize: '2rem',
                                         textAlign: 'center',
                                         marginBottom: '20px',
-                                        // display: 'block',
-
-                                        // mrginLeft: 'auto'
                                     }}
                                 >
                                     {`${el.name}.com`}:

@@ -19,8 +19,6 @@ export const rangeSlice = createSlice({
     },
 });
 
-
-
 export const { onRangeStorage, onRangeTransfer } = rangeSlice.actions;
 
 export default rangeSlice.reducer;

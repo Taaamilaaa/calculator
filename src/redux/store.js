@@ -3,6 +3,6 @@ import rangeReducer from './slice';
 
 export const store = configureStore({
     reducer: {
-    range: rangeReducer,
-  },
-})
+        range: rangeReducer,
+    },
+});
